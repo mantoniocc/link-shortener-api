@@ -13,9 +13,9 @@ This is a simple REST API built with Spring Boot to create and manage short link
 
 ### Create a Short Link
 
-Method: POST
-Path: /links
-Description: Creates a new short code for a given long URL.
+- Method: POST
+- Path: /links
+- Description: Creates a new short code for a given long URL.
 
 ```bash
 curl -X POST \
@@ -26,9 +26,9 @@ curl -X POST \
 
 ### Redirect to Long URL
 
-Method: GET
-Path: /links/{shortCode}
-Description: Redirects to the original long URL associated with the short code. A 404 Not Found is returned if the code does not exist.
+- Method: GET
+- Path: /links/{shortCode}
+- Description: Redirects to the original long URL associated with the short code. A 404 Not Found is returned if the code does not exist.
 
 ```bash
 # Replace {shortCode} with a code you've created
