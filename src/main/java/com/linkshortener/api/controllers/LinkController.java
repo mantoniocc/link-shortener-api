@@ -5,13 +5,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.linkshortener.api.dto.CreateLinkRequest;
+
 @RestController
 @RequestMapping("/links")
 public class LinkController {
 
     @PostMapping
-    public String createShortLink(@RequestBody String longUrl) {
-        // For now, we'll just return the URL we received to confirm it works
-        return "Recieved long URL: " + longUrl;
+    public String createShortLink(@RequestBody CreateLinkRequest request) {
+        // Spring now automatically parses the JSON into our DTO.
+        // We can access the longUrl directly.
+        return "Recieved long URL: " + request.longUrl();
     }
 }
