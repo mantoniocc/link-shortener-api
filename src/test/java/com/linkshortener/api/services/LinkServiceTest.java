@@ -7,9 +7,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.any;
 import org.junit.jupiter.api.Test;
 
 import com.linkshortener.api.repositories.LinkRepository;
+import com.linkshortener.api.domain.Link;
 
 @ExtendWith(MockitoExtension.class)
 class LinkServiceTest {
@@ -31,5 +34,18 @@ class LinkServiceTest {
         // Then (Assert)
         assertNotNull(shortCode);
         assertEquals(7, shortCode.length());
+    }
+
+    @Test
+    void createShortLink_shouldSaveLinkToRepository() {
+        //Given
+        String longUrl = "https://www.example.com";
+
+        // When
+        linkService.createShortLink(longUrl);
+
+        // Then
+        verify(linkRepository).save(any(Link.class));
+        
     }
 }
