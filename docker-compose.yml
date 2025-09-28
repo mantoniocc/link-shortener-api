@@ -11,5 +11,18 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  api:
+    build: .
+    container_name: link-shortener-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/link_shortener
+      DB_USER: app_user
+      DB_PASSWORD: As0X!dP@ssw0rd
+      API_KEY: my-secret-key-12345
+
 volumes:
   pgdata:
