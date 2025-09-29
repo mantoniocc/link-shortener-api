@@ -2,13 +2,25 @@
 
 This is a simple REST API built with Spring Boot to create and manage short links.
 
-## How to Run
+## How to Run (locally)
 
 1. Clone the repository.
-2. Run the application using the Maven wrapper from the root directory:
+2. Setup PostgreSQL locally or with docker.
+3. Run the application using the Maven wrapper from the root directory:
    ```bash
    ./mvnw spring-boot:run
    ```
+3. Run Tests:
+   ```bash
+   ./mvnw test
+   ```
+## How to run with Docker
+1. Clone the repository.
+2. Run the application using the docker compose from the root directory:
+   ```bash
+   docker compose up -d --build
+   ```
+   
 ## API Endpoints
 
 ### Create a Short Link
@@ -18,9 +30,10 @@ This is a simple REST API built with Spring Boot to create and manage short link
 - Description: Creates a new short code for a given long URL.
 
 ```bash
-curl -X POST \
+ curl -i -X POST \                    
   -H "Content-Type: application/json" \
-  -d '{"longUrl": "https://google.com"}' \
+  -H "X-API-KEY: my-secret-key-12345" \
+  -d '{"longUrl": "https://example.com"}' \
   http://localhost:8080/links
 ```
 
